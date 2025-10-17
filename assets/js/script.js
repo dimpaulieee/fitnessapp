@@ -98,24 +98,38 @@ const CLOUD_STORAGE_KEY = 'fitnessTrackerUsers';
 // Initialize Application
 document.addEventListener('DOMContentLoaded', function() {
     const path = window.location.pathname;
+    console.log('Current path:', path);
     
     if (path.includes('signup.html')) {
+        console.log('Initializing signup page...');
         initializeSignupPage();
     } else if (path.includes('login.html') || path === '/' || path.endsWith('/')) {
+        console.log('Initializing login page...');
         initializeLoginPage();
     } else {
+        console.log('Initializing dashboard...');
         initializeDashboard();
     }
 });
 
 // Cloud Storage Functions
 function getCloudUsers() {
-    const users = localStorage.getItem(CLOUD_STORAGE_KEY);
-    return users ? JSON.parse(users) : {};
+    try {
+        const users = localStorage.getItem(CLOUD_STORAGE_KEY);
+        return users ? JSON.parse(users) : {};
+    } catch (error) {
+        console.error('Error getting cloud users:', error);
+        return {};
+    }
 }
 
 function saveCloudUsers(users) {
-    localStorage.setItem(CLOUD_STORAGE_KEY, JSON.stringify(users));
+    try {
+        localStorage.setItem(CLOUD_STORAGE_KEY, JSON.stringify(users));
+        console.log('Users saved to cloud:', Object.keys(users));
+    } catch (error) {
+        console.error('Error saving cloud users:', error);
+    }
 }
 
 function saveUserToCloud(userData) {
@@ -135,13 +149,18 @@ function updateUserInCloud(userData) {
 
 // Signup Page Functions
 function initializeSignupPage() {
+    console.log('Setting up signup form...');
     const signupForm = document.getElementById('signupForm');
     if (signupForm) {
         signupForm.addEventListener('submit', handleSignup);
+        console.log('Signup form event listener added');
+    } else {
+        console.error('Signup form not found!');
     }
 }
 
 function handleSignup(event) {
+    console.log('Signup form submitted');
     event.preventDefault();
     
     const username = document.getElementById('username').value;
@@ -152,7 +171,14 @@ function handleSignup(event) {
     const height = parseFloat(document.getElementById('height').value);
     const goal = document.getElementById('goal').value;
 
+    console.log('Form values:', { username, email, password, confirmPassword, weight, height, goal });
+
     // Validation
+    if (!username || !email || !password || !confirmPassword || !weight || !height || !goal) {
+        showAlert('Please fill in all fields!', 'error');
+        return;
+    }
+
     if (password !== confirmPassword) {
         showAlert('Passwords do not match!', 'error');
         return;
@@ -160,6 +186,11 @@ function handleSignup(event) {
 
     if (password.length < 6) {
         showAlert('Password must be at least 6 characters long!', 'error');
+        return;
+    }
+
+    if (weight <= 0 || height <= 0) {
+        showAlert('Please enter valid weight and height values!', 'error');
         return;
     }
 
@@ -203,13 +234,15 @@ function handleSignup(event) {
 
     userData.progress = progressData;
 
+    console.log('Creating user:', userData);
+
     // Save to cloud
     saveUserToCloud(userData);
     
     // Set as current user
     localStorage.setItem('currentUser', JSON.stringify(userData));
     
-    showAlert('Account created successfully! Redirecting...', 'success');
+    showAlert('Account created successfully! Redirecting to dashboard...', 'success');
     
     setTimeout(() => {
         window.location.href = 'index.html';
@@ -218,21 +251,31 @@ function handleSignup(event) {
 
 // Login Page Functions
 function initializeLoginPage() {
+    console.log('Initializing login page...');
+    
     // Check if user is already logged in
     const savedUser = localStorage.getItem('currentUser');
     if (savedUser) {
-        const user = JSON.parse(savedUser);
-        // Verify user still exists in cloud
-        const cloudUser = getUserFromCloud(user.username);
-        if (cloudUser && cloudUser.password === user.password) {
-            window.location.href = 'index.html';
-            return;
+        try {
+            const user = JSON.parse(savedUser);
+            // Verify user still exists in cloud
+            const cloudUser = getUserFromCloud(user.username);
+            if (cloudUser && cloudUser.password === user.password) {
+                console.log('User already logged in, redirecting...');
+                window.location.href = 'index.html';
+                return;
+            }
+        } catch (error) {
+            console.error('Error parsing saved user:', error);
         }
     }
     
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', handleLogin);
+        console.log('Login form event listener added');
+    } else {
+        console.error('Login form not found!');
     }
     
     startFactCarousel();
@@ -252,15 +295,23 @@ function startFactCarousel() {
 
 function handleLogin(event) {
     event.preventDefault();
+    console.log('Login form submitted');
     
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+
+    console.log('Login attempt for user:', username);
+
+    if (!username || !password) {
+        showAlert('Please enter both username and password!', 'error');
+        return;
+    }
 
     // Get user from cloud
     const user = getUserFromCloud(username);
     
     if (!user) {
-        showAlert('User not found! Please check your username.', 'error');
+        showAlert('User not found! Please check your username or sign up.', 'error');
         return;
     }
 
@@ -276,7 +327,7 @@ function handleLogin(event) {
     // Set as current user
     localStorage.setItem('currentUser', JSON.stringify(user));
     
-    showAlert('Login successful! Redirecting...', 'success');
+    showAlert('Login successful! Redirecting to dashboard...', 'success');
     
     setTimeout(() => {
         window.location.href = 'index.html';
@@ -284,6 +335,8 @@ function handleLogin(event) {
 }
 
 function showAlert(message, type) {
+    console.log('Showing alert:', message, type);
+    
     // Remove existing alerts
     const existingAlert = document.querySelector('.alert');
     if (existingAlert) {
@@ -293,26 +346,55 @@ function showAlert(message, type) {
     const alertDiv = document.createElement('div');
     alertDiv.className = `alert alert-${type}`;
     alertDiv.textContent = message;
+    alertDiv.style.margin = '1rem 0';
+    alertDiv.style.padding = '0.75rem 1rem';
+    alertDiv.style.borderRadius = '8px';
+    alertDiv.style.fontWeight = '500';
+    
+    if (type === 'success') {
+        alertDiv.style.background = 'var(--success-color)';
+        alertDiv.style.color = 'white';
+    } else if (type === 'error') {
+        alertDiv.style.background = 'var(--error-color)';
+        alertDiv.style.color = 'white';
+    } else {
+        alertDiv.style.background = 'var(--warning-color)';
+        alertDiv.style.color = 'white';
+    }
     
     const form = document.querySelector('.login-form');
     if (form) {
         form.parentNode.insertBefore(alertDiv, form);
+    } else {
+        // If no form found, append to body
+        document.body.insertBefore(alertDiv, document.body.firstChild);
     }
 }
 
 // Dashboard Functions
 function initializeDashboard() {
+    console.log('Initializing dashboard...');
+    
     const savedUser = localStorage.getItem('currentUser');
     if (!savedUser) {
+        console.log('No user found, redirecting to login...');
         window.location.href = 'login.html';
         return;
     }
     
-    currentUser = JSON.parse(savedUser);
+    try {
+        currentUser = JSON.parse(savedUser);
+        console.log('Current user:', currentUser.username);
+    } catch (error) {
+        console.error('Error parsing current user:', error);
+        window.location.href = 'login.html';
+        return;
+    }
     
     // Verify user still exists in cloud
     const cloudUser = getUserFromCloud(currentUser.username);
     if (!cloudUser) {
+        console.log('User not found in cloud, redirecting to login...');
         localStorage.removeItem('currentUser');
         window.location.href = 'login.html';
         return;
@@ -327,6 +409,8 @@ function initializeDashboard() {
     initializeAllSections();
     showDailyFact();
     updateProgressTracker();
+    
+    console.log('Dashboard initialized successfully');
 }
 
 function calculateCurrentDay() {
@@ -348,10 +432,20 @@ function calculateCurrentDay() {
     
     currentDay = Math.max(1, Math.min(28, daysDiff + 1));
     currentWeek = Math.ceil(currentDay / 7);
+    
+    console.log('Day calculation:', {
+        startDate: startDate.toDateString(),
+        today: today.toDateString(),
+        daysDiff,
+        currentDay,
+        currentWeek
+    });
 }
 
 function updateDashboard() {
     if (!currentUser) return;
+    
+    console.log('Updating dashboard for user:', currentUser.username);
     
     // Update welcome message
     const welcomeElement = document.getElementById('userWelcome');
@@ -463,6 +557,8 @@ function initializeAllSections() {
 }
 
 function initializeEventListeners() {
+    console.log('Initializing event listeners...');
+    
     // Theme toggle
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
@@ -473,12 +569,20 @@ function initializeEventListeners() {
     const foodForm = document.getElementById('foodForm');
     const activityForm = document.getElementById('activityForm');
     
-    if (foodForm) foodForm.addEventListener('submit', handleFoodSubmit);
-    if (activityForm) activityForm.addEventListener('submit', handleActivitySubmit);
+    if (foodForm) {
+        foodForm.addEventListener('submit', handleFoodSubmit);
+        console.log('Food form event listener added');
+    }
+    if (activityForm) {
+        activityForm.addEventListener('submit', handleActivitySubmit);
+        console.log('Activity form event listener added');
+    }
     
     // BMI photo upload
     const bmiPhoto = document.getElementById('bmi-photo');
-    if (bmiPhoto) bmiPhoto.addEventListener('change', handleBmiPhotoUpload);
+    if (bmiPhoto) {
+        bmiPhoto.addEventListener('change', handleBmiPhotoUpload);
+    }
     
     // Load saved theme
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -530,6 +634,9 @@ function calculateBMI() {
     // Update user data
     if (currentUser) {
         currentUser.weight = weight;
+        if (!currentUser.progress.measurements) {
+            currentUser.progress.measurements = [];
+        }
         currentUser.progress.measurements.push({
             date: new Date().toISOString(),
             weight: weight,
@@ -793,6 +900,10 @@ function handleActivitySubmit(event) {
 }
 
 function saveActivityData(timeSlot, activityData) {
+    if (!currentUser.progress.activities) {
+        currentUser.progress.activities = {};
+    }
+    
     currentUser.progress.activities[timeSlot] = activityData;
     
     // Save to cloud
@@ -875,6 +986,10 @@ function handleFoodSubmit(event) {
 
 function saveFoodData(mealType, foodData) {
     const date = document.getElementById('food-date').value;
+    
+    if (!currentUser.progress.foodLog) {
+        currentUser.progress.foodLog = {};
+    }
     
     if (!currentUser.progress.foodLog[date]) {
         currentUser.progress.foodLog[date] = {};
@@ -967,6 +1082,10 @@ function updateMacronutrientTracker(date) {
 
 // Gallery Management
 function addToGallery(type, photoData, description) {
+    if (!currentUser.progress.gallery) {
+        currentUser.progress.gallery = [];
+    }
+    
     currentUser.progress.gallery.push({
         type: type,
         photo: photoData,
