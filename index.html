@@ -142,7 +142,7 @@
 
             <!-- Google Drive button for BMI evidence -->
             <div class="drive-button-container" style="margin-top: 1rem;">
-                <button class="btn-primary drive-button" onclick="openGoogleDrive()">
+                <button class="btn-primary drive-button" onclick="openGoogleDriveBMI()">
                     <i class="fab fa-google-drive"></i> Upload BMI Evidence to Google Drive
                 </button>
             </div>
@@ -393,9 +393,11 @@
                     <label for="foodCalories">Calories:</label>
                     <input type="number" id="foodCalories" required>
                 </div>
-                <div class="input-group">
-                    <label for="foodPhoto">Photo Evidence:</label>
-                    <input type="file" id="foodPhoto" accept="image/*">
+                <!-- Google Drive button for food photo evidence -->
+                <div class="drive-button-container">
+                    <button type="button" class="btn-secondary drive-button" onclick="openGoogleDrive()">
+                        <i class="fab fa-google-drive"></i> Upload Food Photo Evidence to Google Drive
+                    </button>
                 </div>
                 <button type="submit" class="btn-primary">Add to Log</button>
             </form>
