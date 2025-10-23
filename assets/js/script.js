@@ -447,6 +447,18 @@ function openGoogleDrive() {
     window.open('https://drive.google.com/drive/folders/1bhotIQBuNlXxfoJVXPY79oPd7X9GPucA?usp=sharing');
 }
 
+function openGoogleDriveBMI() {
+    window.open('https://drive.google.com/drive/folders/18iJMms9Z0vionNAoiscoB127Jrd049Mr?usp=drive_link');
+}
+
+function openGoogleDriveExercise() {
+    window.open('https://drive.google.com/drive/folders/1sGj17tlj17B6b_pdi0nAJa83ke45Vpad?usp=drive_link');
+}
+
+function openGoogleDriveFood() {
+    window.open('https://drive.google.com/drive/folders/1wDCpRh1DFjpXHJBOr4LkWwwMJZjMCrjB?usp=drive_link');
+}
+
 function updateDashboard() {
     if (!currentUser) return;
     
