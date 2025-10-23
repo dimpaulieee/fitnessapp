@@ -1,5 +1,5 @@
 // My Personal Tracker - Complete Integrated Application with ALL Features
-const DRIVE_FOLDER_URL = "https://drive.google.com/drive/folders/1bhotIQBuNlXxfoJVXPY79oPd7X9GPucA?usp=sharing";
+const DRIVE_FOLDER_URL = "https://drive.google.com/drive/folders/1tEZEoLqL6IAmeMCeqRt0_cZisMYiBXSg";
 
 // Enhanced Fitness Facts Database
 const FITNESS_FACTS = [
@@ -111,11 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeDashboard();
     }
 });
-
-// Google Drive Functions
-function openDriveFolder() {
-    window.open(DRIVE_FOLDER_URL, '_blank');
-}
 
 // Cloud Storage Functions
 function getCloudUsers() {
@@ -682,10 +677,22 @@ function calculateBMI(weight, height) {
 }
 
 function handleBmiPhotoUpload(event) {
-    // This function is no longer needed for file upload
-    // Redirect to Google Drive instead
-    openDriveFolder();
-}
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const preview = document.getElementById('bmi-preview');
+        if (preview) {
+            preview.innerHTML = `
+                <img src="${e.target.result}" alt="BMI Evidence">
+                <div style="margin-top: 1rem;">
+                    <button onclick="downloadPhoto('bmi', '${e.target.result}')" class="btn-secondary">
+                        💾 Download for Google Drive
+                    </button>
+                </div>
+            `;
+        }
         
         // Add to gallery
         addToGallery('bmi', e.target.result, 'BMI Measurement');
@@ -961,8 +968,19 @@ function handleFoodSubmit(event) {
         timestamp: new Date().toISOString()
     };
     
-    // Photo upload removed - just save the food data directly
-    saveFoodData(mealType, foodData);
+    // Handle photo upload
+    const photoFile = document.getElementById('foodPhoto').files[0];
+    if (photoFile) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            foodData.photo = e.target.result;
+            saveFoodData(mealType, foodData);
+        };
+        reader.readAsDataURL(photoFile);
+    } else {
+        saveFoodData(mealType, foodData);
+    }
+    
     closeFoodModal();
 }
 
@@ -990,7 +1008,10 @@ function saveFoodData(mealType, foodData) {
     loadFoodLog();
     updateMacronutrientTracker(date);
     
-    // Gallery addition for food photos removed
+    // Add to gallery if there's a photo
+    if (foodData.photo) {
+        addToGallery('food', foodData.photo, `Food: ${foodData.name}`);
+    }
     
     // Update dashboard
     updateDashboard();
