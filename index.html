@@ -110,7 +110,7 @@
         </div>
     </section>
 
-    <!-- BMI Section -->
+       <!-- BMI Section -->
     <section id="bmi-section" class="section">
         <h2>1. Get Your BMI</h2>
         <div class="bmi-calculator">
@@ -140,10 +140,11 @@
                 </div>
             </div>
 
-            <div class="evidence-upload">
-                <h4>Photo Evidence</h4>
-                <input type="file" id="bmi-photo" accept="image/*" capture="environment">
-                <div id="bmi-preview" class="image-preview"></div>
+            <!-- Google Drive button for BMI evidence -->
+            <div class="drive-button-container" style="margin-top: 1rem;">
+                <button class="btn-primary drive-button" onclick="openGoogleDrive()">
+                    <i class="fab fa-google-drive"></i> Upload BMI Evidence to Google Drive
+                </button>
             </div>
         </div>
     </section>
