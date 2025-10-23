@@ -444,7 +444,7 @@ function calculateCurrentDay() {
 
 // Google Drive Button Function
 function openGoogleDrive() {
-    window.open('https://drive.google.com/drive/folders/1bhotIQBuNlXxfoJVXPY79oPd7X9GPucA?usp=sharing', '_blank');
+    window.open('https://drive.google.com/drive/folders/1bhotIQBuNlXxfoJVXPY79oPd7X9GPucA?usp=sharing');
 }
 
 function updateDashboard() {
