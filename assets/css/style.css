@@ -1048,4 +1048,22 @@ input:focus, select:focus, textarea:focus {
     .summary-actions {
         flex-direction: column;
     }
+
+    .drive-button-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.drive-button {
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+}
+
+.drive-button i {
+    margin-right: 0.5rem;
+}
 }
