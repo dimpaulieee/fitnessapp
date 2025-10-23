@@ -1,4 +1,4 @@
-/* Complete CSS with ALL features + Enhanced Background Animation */
+/* Complete CSS with ALL features */
 :root {
     --primary-color: #4361ee;
     --secondary-color: #3a0ca3;
@@ -36,185 +36,29 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     transition: all 0.3s ease;
-    position: relative;
-    overflow-x: hidden;
 }
 
-/* Enhanced Background Animation */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 80%, rgba(67, 97, 238, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(60, 12, 163, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(76, 201, 240, 0.05) 0%, transparent 50%);
-    z-index: -1;
-    animation: backgroundShift 15s ease-in-out infinite;
-}
-
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        linear-gradient(45deg, transparent 65%, rgba(67, 97, 238, 0.03) 65%, rgba(67, 97, 238, 0.03) 70%, transparent 70%),
-        linear-gradient(-45deg, transparent 65%, rgba(76, 201, 240, 0.03) 65%, rgba(76, 201, 240, 0.03) 70%, transparent 70%),
-        linear-gradient(135deg, transparent 65%, rgba(60, 12, 163, 0.03) 65%, rgba(60, 12, 163, 0.03) 70%, transparent 70%);
-    background-size: 100px 100px;
-    z-index: -1;
-    animation: patternMove 20s linear infinite;
-}
-
-/* Floating Particles */
-.particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-}
-
-.particle {
-    position: absolute;
-    background: var(--primary-color);
-    border-radius: 50%;
-    opacity: 0.1;
-    animation: float 20s infinite linear;
-}
-
-.particle:nth-child(1) { top: 10%; left: 20%; width: 8px; height: 8px; animation-delay: 0s; }
-.particle:nth-child(2) { top: 60%; left: 80%; width: 12px; height: 12px; animation-delay: -2s; }
-.particle:nth-child(3) { top: 30%; left: 40%; width: 6px; height: 6px; animation-delay: -4s; }
-.particle:nth-child(4) { top: 80%; left: 60%; width: 10px; height: 10px; animation-delay: -6s; }
-.particle:nth-child(5) { top: 40%; left: 10%; width: 7px; height: 7px; animation-delay: -8s; }
-.particle:nth-child(6) { top: 20%; left: 70%; width: 9px; height: 9px; animation-delay: -10s; }
-.particle:nth-child(7) { top: 70%; left: 30%; width: 5px; height: 5px; animation-delay: -12s; }
-.particle:nth-child(8) { top: 90%; left: 50%; width: 11px; height: 11px; animation-delay: -14s; }
-
-/* Background Animations */
-@keyframes backgroundShift {
-    0%, 100% {
-        background-position: 0% 0%, 100% 100%, 50% 50%;
-        transform: scale(1);
-    }
-    50% {
-        background-position: 100% 100%, 0% 0%, 80% 20%;
-        transform: scale(1.02);
-    }
-}
-
-@keyframes patternMove {
-    0% {
-        background-position: 0 0, 0 0, 0 0;
-    }
-    100% {
-        background-position: 100px 100px, -100px -100px, 50px 50px;
-    }
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translate(0, 0) rotate(0deg);
-        opacity: 0.1;
-    }
-    25% {
-        transform: translate(100px, 50px) rotate(90deg);
-        opacity: 0.15;
-    }
-    50% {
-        transform: translate(50px, 100px) rotate(180deg);
-        opacity: 0.08;
-    }
-    75% {
-        transform: translate(-50px, 75px) rotate(270deg);
-        opacity: 0.12;
-    }
-}
-
-/* Enhanced Login Page with Better Background */
+/* Login Page Styles */
 .login-body {
     background: var(--gradient);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.login-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-    animation: loginBackground 10s ease-in-out infinite;
-}
-
-@keyframes loginBackground {
-    0%, 100% {
-        transform: scale(1) rotate(0deg);
-        opacity: 0.8;
-    }
-    50% {
-        transform: scale(1.1) rotate(180deg);
-        opacity: 1;
-    }
 }
 
 .login-container {
     width: 100%;
     max-width: 400px;
     padding: 2rem;
-    position: relative;
-    z-index: 1;
 }
 
 .login-card {
     background: var(--bg-color);
     border-radius: 20px;
     padding: 2rem;
-    box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.1),
-        0 0 0 1px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     animation: slideUp 0.6s ease-out;
-    backdrop-filter: blur(10px);
-    position: relative;
-    overflow: hidden;
-}
-
-.login-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transform: rotate(45deg);
-    animation: cardShine 3s ease-in-out infinite;
-}
-
-@keyframes cardShine {
-    0%, 100% {
-        transform: rotate(45deg) translateX(-100%);
-    }
-    50% {
-        transform: rotate(45deg) translateX(100%);
-    }
 }
 
 @keyframes slideUp {
@@ -231,17 +75,12 @@ body::after {
 .login-header {
     text-align: center;
     margin-bottom: 2rem;
-    position: relative;
 }
 
 .login-header h1 {
     color: var(--primary-color);
     margin-bottom: 0.5rem;
     font-size: 2rem;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .logo-animation {
@@ -260,16 +99,6 @@ body::after {
     border: 3px solid var(--primary-color);
     border-radius: 50%;
     animation: pulse 2s infinite;
-}
-
-.pulse-circle:nth-child(2) {
-    animation-delay: 0.5s;
-    border-color: var(--accent-color);
-}
-
-.pulse-circle:nth-child(3) {
-    animation-delay: 1s;
-    border-color: var(--secondary-color);
 }
 
 @keyframes pulse {
@@ -294,22 +123,8 @@ body::after {
     transform: translate(-50%, -50%);
     font-size: 2rem;
     color: var(--primary-color);
-    animation: bounce 2s infinite;
 }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-    }
-    40% {
-        transform: translate(-50%, -50%) scale(1.1);
-    }
-    60% {
-        transform: translate(-50%, -50%) scale(1.05);
-    }
-}
-
-/* Rest of your existing CSS remains exactly the same */
 /* Fact Carousel */
 .fact-carousel {
     position: relative;
@@ -341,7 +156,6 @@ body::after {
     position: sticky;
     top: 0;
     z-index: 1000;
-    backdrop-filter: blur(10px);
 }
 
 .nav-container {
@@ -432,8 +246,6 @@ body::after {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
-    position: relative;
-    z-index: 1;
 }
 
 .section {
@@ -442,26 +254,6 @@ body::after {
     padding: 2rem;
     margin-bottom: 2rem;
     box-shadow: var(--shadow);
-    backdrop-filter: blur(10px);
-    position: relative;
-    overflow: hidden;
-}
-
-.section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--gradient);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-}
-
-.section:hover::before {
-    transform: scaleX(1);
 }
 
 h2 {
@@ -471,89 +263,807 @@ h2 {
     padding-bottom: 0.5rem;
 }
 
-/* All your existing CSS continues below exactly as you had it */
-/* Input Groups, Buttons, Dashboard, Stats Grid, BMI Status, etc. */
-/* ... (all your existing CSS remains unchanged) ... */
+/* Input Groups */
+.input-group {
+    margin-bottom: 1rem;
+}
 
-/* Enhanced buttons with subtle animation */
-.btn-primary, .btn-secondary, .btn-login {
-    position: relative;
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-color);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--surface-color);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-login {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+}
+
+/* Dashboard Styles */
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.progress-tracker {
+    max-width: 400px;
+    margin: 1rem auto;
+}
+
+.days-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.progress-bar-large {
+    height: 12px;
+    background: var(--border-color);
+    border-radius: 6px;
     overflow: hidden;
 }
 
-.btn-primary::before, .btn-secondary::before, .btn-login::before {
-    content: '';
+.progress-fill-large {
+    height: 100%;
+    background: var(--gradient);
+    border-radius: 6px;
+    transition: width 0.5s ease;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--primary-color);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.stat-info h3 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.stat-trend {
+    margin-left: auto;
+    color: var(--success-color);
+}
+
+/* BMI Status Styles */
+.bmi-status {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    margin-left: 0.5rem;
+}
+
+.bmi-normal {
+    background: var(--success-color);
+    color: white;
+}
+
+.bmi-underweight {
+    background: var(--warning-color);
+    color: white;
+}
+
+.bmi-overweight {
+    background: var(--error-color);
+    color: white;
+}
+
+.bmi-obese {
+    background: #dc2626;
+    color: white;
+}
+
+/* Daily Fact */
+.daily-fact {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.fact-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.fact-header i {
+    font-size: 1.2rem;
+}
+
+/* BMI Calculator */
+.bmi-calculator {
+    max-width: 500px;
+}
+
+.bmi-result {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-color);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.bmi-meter {
+    margin-top: 1rem;
+}
+
+.meter-track {
+    height: 8px;
+    background: linear-gradient(90deg, #3b82f6, #10b981, #f59e0b, #ef4444);
+    border-radius: 4px;
+    position: relative;
+    margin: 1rem 0;
+}
+
+.meter-needle {
     position: absolute;
+    top: -4px;
+    width: 4px;
+    height: 16px;
+    background: var(--text-primary);
+    transform: translateX(-50%);
+}
+
+.meter-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Evidence Upload */
+.evidence-upload {
+    margin-top: 2rem;
+}
+
+.image-preview {
+    margin-top: 1rem;
+    max-width: 200px;
+}
+
+.image-preview img {
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+}
+
+/* Goals Form */
+.goals-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.smart-goal, .fitt-plan {
+    padding: 1.5rem;
+    background: var(--bg-color);
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+/* Activity Grid */
+.week-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.activity-grid {
+    display: grid;
+    grid-template-columns: 100px repeat(7, 1fr);
+    gap: 1px;
+    background: var(--border-color);
+    border: 1px solid var(--border-color);
+}
+
+.time-slot, .day-header {
+    background: var(--surface-color);
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.activity-cell {
+    background: var(--bg-color);
+    padding: 0.5rem;
+    min-height: 60px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.activity-cell:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.activity-entry {
+    font-size: 0.8rem;
+    padding: 0.25rem;
+    border-radius: 4px;
+    margin-bottom: 0.25rem;
+}
+
+.activity-sleeping { background: #dbeafe; }
+.activity-exercise { background: #dcfce7; }
+.activity-eating { background: #fef3c7; }
+.activity-school { background: #e9d5ff; }
+.activity-leisure { background: #fce7f3; }
+
+/* Food Log */
+.macronutrient-tracker {
+    background: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 2px solid var(--border-color);
+}
+
+.macro-bar {
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.meal-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.meal-section {
+    background: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+}
+
+.meal-entry {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background: var(--surface-color);
+    border-radius: 6px;
+    border-left: 4px solid var(--success-color);
+}
+
+.add-food-btn {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Gallery */
+.gallery-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-item {
+    background: var(--bg-color);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.gallery-info {
+    padding: 1rem;
+}
+
+/* FitCoach Chat */
+.fitcoach-chat {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+.chat-toggle {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.chat-toggle:hover {
+    transform: scale(1.1);
+}
+
+.chat-window {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 350px;
+    height: 500px;
+    background: var(--surface-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: none;
+    flex-direction: column;
+    border: 2px solid var(--border-color);
+}
+
+.chat-window.active {
+    display: flex;
+}
+
+.chat-header {
+    padding: 1rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.message {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+.bot-message {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    align-self: flex-start;
+}
+
+.user-message {
+    background: var(--primary-color);
+    color: white;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.quick-actions {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.quick-btn {
+    padding: 0.5rem;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quick-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
     top: 0;
-    left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-.btn-primary:hover::before, .btn-secondary:hover::before, .btn-login:hover::before {
-    left: 100%;
-}
-
-/* Enhanced cards with hover effects */
-.stat-card, .meal-section, .progress-card {
-    transition: all 0.3s ease;
+.modal-content {
+    background-color: var(--surface-color);
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
     position: relative;
 }
 
-.stat-card:hover, .meal-section:hover, .progress-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 
-        0 10px 25px rgba(0, 0, 0, 0.1),
-        0 0 0 1px rgba(67, 97, 238, 0.1);
+.large-modal {
+    max-width: 800px;
 }
 
-/* Add particles to the HTML */
-/* You'll need to add this to your HTML:
-<div class="particles">
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-</div>
-*/
+.close-modal {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
 
-/* Responsive adjustments for background */
+.close-modal:hover {
+    color: var(--text-primary);
+}
+
+/* Star Rating */
+.star-rating {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.star {
+    font-size: 1.5rem;
+    color: var(--border-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.star.active {
+    color: var(--warning-color);
+}
+
+/* Progress Section */
+.progress-cards {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.progress-card {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+}
+
+.progress-chart {
+    height: 200px;
+    background: var(--bg-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.achievements-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.achievement-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-color);
+    border-radius: 8px;
+    border-left: 4px solid var(--success-color);
+}
+
+.achievement-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--success-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.summary-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Summary Modal */
+.summary-content {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 1rem 0;
+}
+
+.summary-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-color);
+    border-radius: 8px;
+}
+
+.summary-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.summary-stat {
+    text-align: center;
+    padding: 1rem;
+    background: var(--surface-color);
+    border-radius: 8px;
+}
+
+.summary-stat h4 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Login Links */
+.login-links {
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.login-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+/* Alert Styles */
+.alert {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: var(--success-color);
+    color: white;
+}
+
+.alert-error {
+    background: var(--error-color);
+    color: white;
+}
+
+.alert-warning {
+    background: var(--warning-color);
+    color: white;
+}
+
+/* Creator Info */
+.creator-info {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.creator-footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--surface-color);
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    body::before, body::after {
-        animation-duration: 30s;
+    .nav-menu {
+        display: none;
     }
     
-    .particle {
-        animation-duration: 30s;
+    .container {
+        padding: 1rem;
     }
     
-    .login-card::before {
-        animation-duration: 5s;
+    .goals-form {
+        grid-template-columns: 1fr;
     }
+    
+    .activity-grid {
+        grid-template-columns: 60px repeat(7, 1fr);
+        font-size: 0.8rem;
+    }
+    
+    .chat-window {
+        width: 300px;
+        right: -50px;
+    }
+    
+    .meal-sections {
+        grid-template-columns: 1fr;
+    }
+    
+    .progress-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-container {
+        flex-wrap: wrap;
+    }
+    
+    .nav-actions {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .summary-actions {
+        flex-direction: column;
+    }
+
+    .drive-button-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
 }
 
-/* Dark theme adjustments for background */
-[data-theme="dark"] body::before {
-    background: 
-        radial-gradient(circle at 20% 80%, rgba(67, 97, 238, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(60, 12, 163, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(76, 201, 240, 0.03) 0%, transparent 50%);
+.drive-button {
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
 }
 
-[data-theme="dark"] body::after {
-    background: 
-        linear-gradient(45deg, transparent 65%, rgba(67, 97, 238, 0.02) 65%, rgba(67, 97, 238, 0.02) 70%, transparent 70%),
-        linear-gradient(-45deg, transparent 65%, rgba(76, 201, 240, 0.02) 65%, rgba(76, 201, 240, 0.02) 70%, transparent 70%),
-        linear-gradient(135deg, transparent 65%, rgba(60, 12, 163, 0.02) 65%, rgba(60, 12, 163, 0.02) 70%, transparent 70%);
+.drive-button i {
+    margin-right: 0.5rem;
 }
-
-[data-theme="dark"] .particle {
-    background: var(--accent-color);
-    opacity: 0.05;
 }
